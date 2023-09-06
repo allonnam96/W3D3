@@ -21,11 +21,25 @@ def exp(b,n)
     end
 end
 
-def deep_dup
-
-
+def deep_dup(array)
+    return array if !array.is_a?(Array)
+    new_array = []
+    array.each do |ele|
+        new_array << deep_dup(ele)
+    end
+   new_array
 
 end
+
+
+# robot_parts = [
+#   ["nuts", "bolts", "washers"],
+#   ["capacitors", "resistors", "inductors"]
+# ]
+# p deep_dup(robot_parts[1])
+# robot_parts_copy = robot_parts.dup
+# robot_parts_copy[1] << "LEDs"
+# p deep_dup(robot_parts[1])
 
 
 def fibonacci(n)
