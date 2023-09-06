@@ -73,18 +73,18 @@ end
 
 def merge(array1, array2)
     new_array = []
-   i = 0
-   x = 0
+    i = 0
+    x = 0
     while i < array1.length && x < array2.length
-
-            if array1[i] < array2[x]
-                new_array << array1[i] 
-                i += 1
-            else
-                new_array << array2[x]
-                x += 1
+        if array1[i] < array2[x]
+            new_array << array1[i] 
+            i += 1
+        else
+            new_array << array2[x]
+            x += 1
         end
     end
+
     if i == array1.length
         new_array += array2[x...array2.length]
     else
@@ -92,7 +92,23 @@ def merge(array1, array2)
     end
     new_array
 end
-#p merge([4,12],[1,2,6])
 
+def subsets(array)
+    return [] if array.empty?
+    return [[], [1]] if array.length == 1
+    last_num = array[-1]
+    new_arr = subsets(array[0...-1]) 
+    old_arr = subsets(array[0...-1]) 
+    
+    new_arr.map do |sub|
+        sub << last_num
+    end
 
-p merge_sort([4,12,5,3,6,8,8,0,-1])
+    old_arr + new_arr
+end
+
+p subsets([]) # => [[]]
+p subsets([1]) # => [[], [1]] 
+p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
+p subsets([1, 2, 3])
+# => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
