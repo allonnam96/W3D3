@@ -97,11 +97,11 @@ def subsets(array)
     return [] if array.empty?
     return [[], [1]] if array.length == 1
     last_num = array[-1]
-    new_arr = subsets(array[0...-1]) 
+    new_arr = []
     old_arr = subsets(array[0...-1]) 
     
-    new_arr.map do |sub|
-        sub << last_num
+    old_arr.each do |sub|
+        new_arr << sub + [last_num]
     end
 
     old_arr + new_arr
