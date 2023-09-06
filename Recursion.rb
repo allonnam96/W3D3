@@ -60,3 +60,39 @@ def bsearch(array, target)
         end
     end
 end
+
+
+def merge_sort(array)
+ #   return [] if array.length == 0
+    return array if array.length <=1
+    middle = array.length / 2
+    first_half = array[0...middle]
+    second_half = array[middle..-1]
+     merge(merge_sort(first_half) , merge_sort(second_half))
+end
+
+def merge(array1, array2)
+    new_array = []
+   i = 0
+   x = 0
+    while i < array1.length && x < array2.length
+
+            if array1[i] < array2[x]
+                new_array << array1[i] 
+                i += 1
+            else
+                new_array << array2[x]
+                x += 1
+        end
+    end
+    if i == array1.length
+        new_array += array2[x...array2.length]
+    else
+        new_array += array1[i...array1.length]
+    end
+    new_array
+end
+#p merge([4,12],[1,2,6])
+
+
+p merge_sort([4,12,5,3,6,8,8,0,-1])
